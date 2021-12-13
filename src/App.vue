@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <h1>{{titulo}}</h1>
-    <img :src="foto.url" :alt="foto.titulo">
+    <ul>
+      <li v-for="foto in fotos">
+        <img :src="foto.url" :alt="foto.titulo">
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -10,10 +14,12 @@ export default {
   data(){
     return{
       titulo: 'Alurapic',
-      foto: {
-        url: 'https://pm1.narvii.com/6085/f86e982ce4902dbcb104b9664eb3e085ddeb6b5d_hq.jpg',
-        titulo: 'pikachoo'
-      }
+      fotos: [
+        {
+          url: 'https://pm1.narvii.com/6085/f86e982ce4902dbcb104b9664eb3e085ddeb6b5d_hq.jpg',
+          titulo: 'pikachoo'
+        }
+      ]
     }
   }
 }
