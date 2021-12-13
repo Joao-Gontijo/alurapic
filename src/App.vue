@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <!-- {{ lacuna do template, feita por interpolação/data-binding
+    (pegar um dado que o template precisa e colocar na tag) }} -->
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -22,6 +24,7 @@
 <script>
 export default {
   name: 'app',
+  //função data sempre precisa retornar um objeto js
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
