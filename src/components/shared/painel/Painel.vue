@@ -2,9 +2,11 @@
     <div class="painel">
         <h2 @click="visivel = !visivel" class="painel-titulo">{{ titulo }}</h2>
         <!-- slot mantém o que tá dentro da tag no app.vue -->
-        <div class="painel-conteudo" v-show="visivel">
-          <slot></slot>
-        </div>
+        <transition name="painel-fade">
+          <div class="painel-conteudo" v-show="visivel">
+            <slot></slot>
+          </div>
+        </transition>
     </div>    
 </template>
 
@@ -39,6 +41,14 @@ export default {
     margin: 0 0 15px 0;
     padding: 10px;
     text-transform: uppercase;
+  }
+
+  .painel-fade-enter, .painel-fade-leave-active{
+    opacity: 0;
+  }
+
+  .painel-fade-enter-active, .painel-fade-leave-active {
+    transition: opacity .4s;
   }
 
   * {
