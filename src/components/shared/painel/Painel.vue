@@ -1,17 +1,22 @@
 <template>
     <div class="painel">
-        <h2 class="painel-titulo">{{ titulo }}</h2>
+        <h2 @click="visivel = !visivel" class="painel-titulo">{{ titulo }}</h2>
         <!-- slot mantém o que tá dentro da tag no app.vue -->
-        <slot class="painel-conteudo">
-            
-        </slot>
+        <div class="painel-conteudo" v-show="visivel">
+          <slot></slot>
+        </div>
     </div>    
 </template>
 
 <script>
 export default {
   //quais são as propriedades que esse componente aceita receber
-  props: ['titulo', 'url'] 
+  props: ['titulo', 'url'],
+  data(){
+    return{
+      visivel: true
+    }
+  }
 }
 </script>
 
