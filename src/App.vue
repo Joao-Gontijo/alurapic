@@ -1,9 +1,11 @@
 <template>
   <div class="corpo">    
     <h1 class="centralizado">{{ titulo }}</h1>
+    <!-- v-bind da fonte de dados para view // v-on da view para fonte de dados -->
+    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtrar pelo titulo">
 
     <ul class="lista-fotos">
-      <li class="lista-fotos-itens" v-for="foto in fotos">
+      <li class="lista-fotos-itens" v-for="foto in fotosComFiltro">
         
         <meu-painel :titulo="foto.titulo">
           <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
@@ -25,7 +27,20 @@ export default {
   data(){
     return{
       titulo: 'Alurapic',
-      fotos: []
+      fotos: [],
+      filtro: ''
+    }
+  },
+  computed: {
+    fotosComFiltro(){
+      if(this.filtro){
+          //expressão regular que baseado no valor digitado buscado na lista de fotos
+          //trazendo do array que contém o que foi digitado (!case sensitive)
+          let exp = new RegExp(this.filtro.trim(), 'i');
+          return this.fotos.filter(foto => exp.test(foto.titulo));
+      } else {
+        return this.fotos;
+      }
     }
   },
   created(){
@@ -55,6 +70,10 @@ export default {
     display: inline-block;
   }
   .imagem-responsiva{
+    width: 100%;
+  }
+  .filtro{
+    display: inline-block;
     width: 100%;
   }
 </style>
