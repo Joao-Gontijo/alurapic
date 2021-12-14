@@ -5,8 +5,10 @@
 
     <ul class="lista-fotos">
       <li class="lista-fotos-itens" v-for="foto in fotos">
+        
         <div class="painel">
-          <h1 class="painel-titulo">{{ foto.titulo }}</h1>
+          <h2 class="painel-titulo">{{ foto.titulo }}</h2>
+          
           <div class="painel-conteudo">
             <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
           </div>
