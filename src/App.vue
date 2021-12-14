@@ -40,21 +40,21 @@ export default {
 </script>
 
 <style>
-.corpo{
-  font-family: Arial, Helvetica, sans-serif;
-  width: 96%;
-  margin: 0 auto;
-}
-.centralizado{
-  text-align: center;
-}
-.lista-fotos{
-  list-style: none;
-}
-.lista-fotos-itens{
-  display: inline-block;
-}
-.imagem-responsiva{
-  width: 100%;
-}
+  .corpo{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 96%;
+    margin: 0 auto;
+  }
+  .centralizado{
+    text-align: center;
+  }
+  .lista-fotos{
+    list-style: none;
+  }
+  .lista-fotos-itens{
+    display: inline-block;
+  }
+  .imagem-responsiva{
+    width: 100%;
+  }
 </style>
