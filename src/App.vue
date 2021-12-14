@@ -14,13 +14,16 @@ export default {
   data(){
     return{
       titulo: 'Alurapic',
-      fotos: [
-        {
-          url: 'https://pm1.narvii.com/6085/f86e982ce4902dbcb104b9664eb3e085ddeb6b5d_hq.jpg',
-          titulo: 'pikachoo'
-        }
-      ]
+      fotos: []
     }
+  },
+  created(){
+    let promise = this.$http.get('http://localhost:3000/v1/fotos');
+    //usar arrow function automaticamente retorna o valor de res.json, que tbm é uma promise
+    promise
+      .then(res => res.json()) //devolve a resposta do servidor e transforma em json
+      .then(fotos => this.fotos = fotos,  //this.fotos recebe as fotos que vem da api
+      err => console.log(err)); //caso dê erro no servidor, imprime no console 
   }
 }
 </script>
