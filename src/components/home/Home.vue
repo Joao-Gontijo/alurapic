@@ -9,7 +9,7 @@
         
         <meu-painel :titulo="foto.titulo">
             <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
-            <meu-botao tipo="button" rotulo="remover"/>
+            <meu-botao @click.native="remove(foto)" tipo="button" rotulo="remover"/>
         </meu-painel> 
 
         
@@ -45,6 +45,13 @@ export default {
           return this.fotos.filter(foto => exp.test(foto.titulo));
       } else {
         return this.fotos;
+      }
+    }
+  },
+  methods: {
+    remove(foto){
+      if(confirm('Confimar operação')){
+        alert('remover ' + foto.titulo);
       }
     }
   },
