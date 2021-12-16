@@ -9,7 +9,12 @@
         
         <meu-painel :titulo="foto.titulo">
             <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
-            <meu-botao @botaoAtivado="remove(foto)" tipo="button" rotulo="remover"/>
+            <meu-botao 
+              tipo="button" rotulo="remover"
+              @botaoAtivado="remove(foto)"
+              :confirmacao="true"
+              estilo="perigo"
+            /> 
         </meu-painel> 
 
         
