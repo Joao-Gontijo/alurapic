@@ -50,6 +50,9 @@ export default {
   .painel-fade-enter-active, .painel-fade-leave-active {
     transition: opacity .4s;
   }
+  .painel-conteudo{
+    overflow: hidden;
+  }
 
   * {
     box-shadow: 5px 5px 5px;
