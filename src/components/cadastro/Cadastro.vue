@@ -10,23 +10,22 @@
       <div class="controle">
         <label for="titulo">TÍTULO</label>
         <input id="titulo" autocomplete="off"
-        @input="foto.titulo = $event.target.value"
-        :value="foto.titulo">
+         v-model.lazy="foto.titulo">
+        <!-- v-model é two-way data-binding  -->
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
         <input id="url" autocomplete="off"
-        @input="foto.url = $event.target.value"
-        :value="foto.url">
-        <imagem-responsiva/>
+         v-model.lazy="foto.url">
+        <imagem-responsiva v-show="foto.url"
+         :url="foto.url" :titulo="foto.titulo"/>
       </div>
 
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
         <textarea id="descricao" autocomplete="off"
-         @input="foto.descricao = $event.target.value"
-         :value="foto.descricao"></textarea>
+         v-model="foto.descricao"></textarea>
       </div>
 
       <div class="centralizado">
