@@ -1,29 +1,32 @@
-import Vue from "vue";
+export default {
 
-Vue.directive('meu-transform', {
-    bind(el, binding, vnode){
+    bind(el, binding, vnode) {
+
         let current = 0;
 
-        el.addEventListener('dblclick', function(){
+        el.addEventListener('dblclick', function() {
+
             let incremento = binding.value || 90;
             let efeito;
 
-            if(!binding.arg || binding.arg == 'rotate'){
-                if(binding.modifiers.reverse){
-                    current -= incremento 
+            if(!binding.arg || binding.arg == 'rotate') {
+
+                if(binding.modifiers.reverse) {
+                    current-=incremento;
                 } else {
-                    current += incremento;
+                    current+=incremento;
                 }
-                
+
                 efeito = `rotate(${current}deg)`;
-            } else if(binding.arg == 'scale') {
+
+            } else if(binding.arg == "scale") {
                 efeito = `scale(${incremento})`;
             }
-            
+
             el.style.transform = efeito;
-            if(binding.modifiers.animate){
-                el.style.transition = "transform 0.5s"
-            }
-        })
+
+            if(binding.modifiers.animate) el.style.transition = 'transform 0.5s';
+        });
     }
-});
+
+};

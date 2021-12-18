@@ -9,7 +9,7 @@
         
         <meu-painel :titulo="foto.titulo">
                                     <!-- modificadores .animate e .reverse -->
-            <imagem-responsiva v-meu-transform:scale.animate="1.1" :url="foto.url" :titulo="foto.titulo"/>
+            <imagem-responsiva v-meu-transform:rotate.animate="1.1" :url="foto.url" :titulo="foto.titulo"/>
             <meu-botao 
               tipo="button" rotulo="remover"
               @botaoAtivado="remove(foto)"
@@ -29,11 +29,17 @@ import Painel from '../shared/painel/Painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
 import Botao from '../shared/botao/Botao.vue'
 
+//importando transform.js
+import transform from '../../directives/Transform';
+
 export default {
   components:{
     'meu-painel': Painel,
     'imagem-responsiva': ImagemResponsiva,
     'meu-botao': Botao
+  },
+  directives:{
+    'meu-transform': transform
   },
   data(){
     return{
