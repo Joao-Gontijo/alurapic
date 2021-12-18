@@ -9,7 +9,7 @@
         
         <meu-painel :titulo="foto.titulo">
                                     <!-- modificadores .animate e .reverse -->
-            <imagem-responsiva v-meu-transform:rotate.animate="1.1" :url="foto.url" :titulo="foto.titulo"/>
+            <imagem-responsiva v-meu-transform:scale.animate="1.1" :url="foto.url" :titulo="foto.titulo"/>
             <meu-botao 
               tipo="button" rotulo="remover"
               @botaoAtivado="remove(foto)"
