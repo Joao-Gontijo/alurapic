@@ -6,21 +6,27 @@
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado"></h2>
 
-    <form>
+    <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off">
+        <input id="titulo" autocomplete="off"
+        @input="foto.titulo = $event.target.value"
+        :value="foto.titulo">
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off">
+        <input id="url" autocomplete="off"
+        @input="foto.url = $event.target.value"
+        :value="foto.url">
         <imagem-responsiva/>
       </div>
 
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
-        <textarea id="descricao" autocomplete="off"></textarea>
+        <textarea id="descricao" autocomplete="off"
+         @input="foto.descricao = $event.target.value"
+         :value="foto.descricao"></textarea>
       </div>
 
       <div class="centralizado">
@@ -33,43 +39,57 @@
 </template>
 
 <script>
-
-import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
-import Botao from '../shared/botao/Botao.vue';
+import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
+import Botao from "../shared/botao/Botao.vue";
 
 export default {
-
-  components: {
-
-    'imagem-responsiva': ImagemResponsiva, 
-    'meu-botao': Botao
-  }
-}
-
+    data(){
+        return{
+            foto: {
+                titulo: '',
+                url: '',
+                descricao: ''
+            }
+        }
+    },
+    components: {
+        "imagem-responsiva": ImagemResponsiva,
+        "meu-botao": Botao
+    },
+    methods:{
+        grava(){
+            console.log('enviar dados para a API');
+            this.foto = {
+                titulo: '',
+                url: '',
+                descricao: ''
+            }
+        }
+    }
+};
 </script>
-<style scoped>
 
-  .centralizado {
+<style scoped>
+    .centralizado {
     text-align: center;
-  }
-  .controle {
+    }
+    .controle {
     font-size: 1.2em;
     margin-bottom: 20px;
-
-  }
-  .controle label {
+    }
+    .controle label {
     display: block;
     font-weight: bold;
-  }
+    }
 
- .controle label + input, .controle textarea {
+    .controle label + input,
+    .controle textarea {
     width: 100%;
     font-size: inherit;
-    border-radius: 5px
-  }
+    border-radius: 5px;
+    }
 
-  .centralizado {
+    .centralizado {
     text-align: center;
-  }
-
+    }
 </style>
