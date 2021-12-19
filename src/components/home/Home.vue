@@ -28,7 +28,8 @@
 <script>
 import Painel from '../shared/painel/Painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
-import Botao from '../shared/botao/Botao.vue'
+import Botao from '../shared/botao/Botao.vue';
+import FotoService from '../../domain/foto/FotoService';
 
 //importando transform.js
 import transform from '../../directives/Transform';
@@ -90,19 +91,12 @@ export default {
   },
   created(){
     
-    this.resource = this.$resource('v1/fotos{/id}');
-    this.resource
-      .query() //query espera um novo parametro, mas pega somente até /fotos
-      .then(res => res.json())
+    this.service = new FotoService(this.$resource);
+
+    this.service
+      .lista()
       .then(fotos => this.fotos = fotos, err => console.log(err));
-    
-    // let promise = this.$http.get('v1/fotos');
-    // //usar arrow function automaticamente retorna o valor de res.json, que tbm é uma promise
-    // promise
-    //   .then(res => res.json()) //devolve a resposta do servidor e transforma em json
-    //   .then(fotos => this.fotos = fotos,  //this.fotos recebe as fotos que vem da api
-    //   err => console.log(err)); //caso dê erro no servidor, imprime no console 
-  }
+    }
 }
 </script>
 
