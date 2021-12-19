@@ -64,8 +64,9 @@ export default {
   },
   methods: {
     remove(foto){
-      this.$http
-        .delete(`v1/fotos/${foto._id}`)
+      
+      this.resource
+        .delete({id: foto._id})
         .then(() => {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1); //remove a foto do array
@@ -74,15 +75,33 @@ export default {
           console.log(err);
           this.mensagem = 'Não foi possível remover a foto';
         });
+      
+      // this.$http
+      //   .delete(`v1/fotos/${foto._id}`)
+      //   .then(() => {
+      //     let indice = this.fotos.indexOf(foto);
+      //     this.fotos.splice(indice, 1); //remove a foto do array
+      //     this.mensagem = 'Foto removida com sucesso';       
+      //   }, err => {
+      //     console.log(err);
+      //     this.mensagem = 'Não foi possível remover a foto';
+      //   });
     }
   },
   created(){
-    let promise = this.$http.get('v1/fotos');
-    //usar arrow function automaticamente retorna o valor de res.json, que tbm é uma promise
-    promise
-      .then(res => res.json()) //devolve a resposta do servidor e transforma em json
-      .then(fotos => this.fotos = fotos,  //this.fotos recebe as fotos que vem da api
-      err => console.log(err)); //caso dê erro no servidor, imprime no console 
+    
+    this.resource = this.$resource('v1/fotos{/id}');
+    this.resource
+      .query() //query espera um novo parametro, mas pega somente até /fotos
+      .then(res => res.json())
+      .then(fotos => this.fotos = fotos, err => console.log(err));
+    
+    // let promise = this.$http.get('v1/fotos');
+    // //usar arrow function automaticamente retorna o valor de res.json, que tbm é uma promise
+    // promise
+    //   .then(res => res.json()) //devolve a resposta do servidor e transforma em json
+    //   .then(fotos => this.fotos = fotos,  //this.fotos recebe as fotos que vem da api
+    //   err => console.log(err)); //caso dê erro no servidor, imprime no console 
   }
 }
 </script>
