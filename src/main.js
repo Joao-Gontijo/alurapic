@@ -6,6 +6,7 @@ import { routes } from './routes';
 import './directives/Transform';
 
 Vue.use(VueResource);
+Vue.http.options.root = 'http://localhost:3000';
 Vue.use(VueRouter);
 
 const router = new VueRouter({ 
@@ -18,7 +19,6 @@ new Vue({  //instancia de uma view = é a cola do componente e da view
   router,
   render: h => h(App) //função render
 })
-
 
 //isso tem a mesma função do componente de cima
 // new Vue({

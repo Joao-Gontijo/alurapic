@@ -65,7 +65,7 @@ export default {
   methods: {
     remove(foto){
       this.$http
-        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        .delete(`v1/fotos/${foto._id}`)
         .then(() => {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1); //remove a foto do array
@@ -77,7 +77,7 @@ export default {
     }
   },
   created(){
-    let promise = this.$http.get('http://localhost:3000/v1/fotos');
+    let promise = this.$http.get('v1/fotos');
     //usar arrow function automaticamente retorna o valor de res.json, que tbm é uma promise
     promise
       .then(res => res.json()) //devolve a resposta do servidor e transforma em json
