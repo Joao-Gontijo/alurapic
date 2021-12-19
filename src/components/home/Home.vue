@@ -66,8 +66,8 @@ export default {
   methods: {
     remove(foto){
       
-      this.resource
-        .delete({id: foto._id})
+      this.service
+        .apaga(foto._id)
         .then(() => {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1); //remove a foto do array
@@ -76,17 +76,6 @@ export default {
           console.log(err);
           this.mensagem = 'Não foi possível remover a foto';
         });
-      
-      // this.$http
-      //   .delete(`v1/fotos/${foto._id}`)
-      //   .then(() => {
-      //     let indice = this.fotos.indexOf(foto);
-      //     this.fotos.splice(indice, 1); //remove a foto do array
-      //     this.mensagem = 'Foto removida com sucesso';       
-      //   }, err => {
-      //     console.log(err);
-      //     this.mensagem = 'Não foi possível remover a foto';
-      //   });
     }
   },
   created(){

@@ -10,11 +10,11 @@ export default class FotoService{
             .then(res => res.json());
     }
 
-    cadastrada(foto){
-
+    cadastra(foto){
+        return this._resource.save(foto);
     }
 
     apaga(id){
-
+        return this._resource.delete({ id });
     }
 }
