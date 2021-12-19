@@ -1,6 +1,7 @@
 <template>
   <div>    
     <h1 class="centralizado">{{ titulo }}</h1>
+    <p v-show="mensagem" class="centralizado"> {{ mensagem }} </p>
     <!-- v-bind da fonte de dados para view // v-on da view para fonte de dados -->
     <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtrar pelo titulo">
 
@@ -45,7 +46,8 @@ export default {
     return{
       titulo: 'Alurapic',
       fotos: [],
-      filtro: ''
+      filtro: '',
+      mensagem: ''
     }
   },
   computed: {
@@ -62,7 +64,12 @@ export default {
   },
   methods: {
     remove(foto){
-        alert('remover ' + foto.titulo);
+      this.$http
+        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        .then(() => this.mensagem = 'Foto removida com sucesso', err => {
+          console.log(err);
+          this.mensagem = 'Não foi possível remover a foto';
+        });
     }
   },
   created(){
