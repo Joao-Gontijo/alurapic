@@ -11,21 +11,21 @@ export const routes = [
         path: '',
         name: 'home',
         component: Home,
-        titulo: 'Home',
+        titulo: 'home',
         menu: true
     },
     {
         path: '/cadastro',
         name: 'cadastro',
         component: Cadastro,
-        titulo: 'Cadastro',
+        titulo: 'cadastro',
         menu: true
     },
     {
         path: '/cadastro/:id',
         name: 'altera',
         component: Cadastro,
-        titulo: 'Cadastro',
+        titulo: 'cadastro',
         menu: false
     }
 ];
