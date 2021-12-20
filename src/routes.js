@@ -26,6 +26,6 @@ export const routes = [
         name: 'altera',
         component: Cadastro,
         titulo: 'Cadastro',
-        menu: true
+        menu: false
     }
 ];
