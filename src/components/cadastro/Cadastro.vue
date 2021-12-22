@@ -12,15 +12,23 @@
     <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off"
-         v-model.lazy="foto.titulo">
+        <input v-validate data-vv-rules="required|min:3|max:30" 
+         data-vv-as="título" 
+         name="titulo" id="titulo"
+         autocomplete="off"
+         v-model="foto.titulo">
+         <span class="erro" v-show="errors.has('titulo')">{{ errors.first('titulo')}}</span>
         <!-- v-model é two-way data-binding  -->
+        <!-- data-vv-as serve como nome, para colocar acento -->
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off"
-         v-model.lazy="foto.url">
+        <input v-validate data-vv-rules="required"  
+         name="url" id="url" 
+         autocomplete="off"
+         v-model="foto.url">
+         <span class="erro" v-show="errors.has('url')">{{ errors.first('url')}}</span>
         <imagem-responsiva v-show="foto.url"
          :url="foto.url" :titulo="foto.titulo"/>
       </div>
@@ -58,17 +66,23 @@ export default {
         "meu-botao": Botao
     },
     methods:{
-        grava(){
-          this.service
-            .cadastra(this.foto)
-            .then(() => {
-                if(this.id){
-                  this.$router.push({ name:'home' });
-                }
-                this.foto = new Foto();
-            }, 
-              err => console.log(err));
-        }
+      grava(){    
+        this.$validator //vem do veevalidate
+          .validateAll() //é uma promise que quando resolvida devolve sucesso (true ou false)
+          .then(sucess => {
+              if(sucess){
+                this.service
+                  .cadastra(this.foto)
+                  .then(() => {
+                      if(this.id){
+                        this.$router.push({ name:'home' });
+                      }
+                      this.foto = new Foto();
+                  }, 
+                  err => console.log(err));
+              }
+        })
+      }
     },
     created(){
         this.service = new FotoService(this.$resource);
@@ -102,5 +116,8 @@ export default {
 
     .centralizado {
     text-align: center;
+    }
+    .erro{
+      color: red;
     }
 </style>
