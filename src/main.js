@@ -6,8 +6,10 @@ import { routes } from './routes';
 import './directives/Transform';
 import VeeValidade from 'vee-validate';
 import msg from './pt_BR';
-
+//importando bootstrap de dentro de node_modules
 import 'bootstrap/dist/css/bootstrap.css';
+//importando css criado por mim
+import './assets/css/teste.css';
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
